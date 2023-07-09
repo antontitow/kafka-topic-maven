@@ -1,0 +1,30 @@
+package ru.titov.kafka.client.worker;
+
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+import ru.titov.kafka.common.model.dto.WorkerRqDto;
+import ru.titov.kafka.producer.service.worker.WorkerFurniture;
+
+/**
+ * @autor : Anton Titov {@literal antontitow@bk.ru}
+ * @created : 10.07.2023, 0:46
+ **/
+@Component
+@EnableKafka
+@Slf4j
+public class WorkerRegistrator implements WorkerFurniture {
+    @KafkaListener(id = "worker-consumer-group-id", topics = "worker-furniture", containerFactory = "workerKafkaListener")
+    public void listen(ConsumerRecord<WorkerRqDto, String> workerRqDto) {
+        log.info("worker-furniture received data : ");
+
+        try {
+            log.info("WorkerId: {}", workerRqDto.key().getWorkerId());
+
+        } catch (Exception e) {
+            log.info("throw error {}", e.getMessage());
+        }
+    }
+}
