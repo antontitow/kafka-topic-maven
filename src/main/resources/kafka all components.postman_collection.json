@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "9321b7f8-099c-4a43-aa9d-728f04391480",
+		"name": "kafka all components",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create furniture order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"furniture\": {\r\n        \"id\": \"0467c3ce-7d38-4722-8c48-b835e7cede87\",\r\n        \"color\": null,\r\n        \"sizes\": [\r\n            {\r\n                \"sizeType\": \"HEIGHT\",\r\n                \"value\": 1.0\r\n            },\r\n            {\r\n                \"sizeType\": \"WIDTH\",\r\n                \"value\": 1.0\r\n            }\r\n        ]\r\n    },\r\n    \"workerId\": \"d73eb4e6-4839-4c93-88fd-748a12feab50\",\r\n    \"customerId\": \"906d057e-0d6b-49c5-b85a-bb6ed97428dc\",\r\n    \"orderTime\": \"2023-07-09T01:13:00\",\r\n    \"sheduleExecutionTime\": \"2023-07-09T01:13:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/v1/order/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"order",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
