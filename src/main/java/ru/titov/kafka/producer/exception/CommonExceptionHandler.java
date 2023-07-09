@@ -22,6 +22,12 @@ public class CommonExceptionHandler {
     @ExceptionHandler(JsonTransformException.class)
     @ResponseBody
     public ResponseEntity<Response> orderJsonTransformExceptionHandler(JsonTransformException exception) {
-        return ResponseEntity.ok().body(Response.builder().status("ERROR").description("Json transformation exception").build());
+        return ResponseEntity.ok().body(Response.builder().status("ERROR").description(exception.getMessage()).build());
+    }
+
+    @ExceptionHandler(FromJsonTransforException.class)
+    @ResponseBody
+    public ResponseEntity<Response> fromJsonTransforExceptionHandler(FromJsonTransforException exception) {
+        return ResponseEntity.ok().body(Response.builder().status("ERROR").description(exception.getMessage()).build());
     }
 }

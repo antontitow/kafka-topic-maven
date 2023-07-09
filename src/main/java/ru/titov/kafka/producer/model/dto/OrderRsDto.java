@@ -22,8 +22,4 @@ public class OrderRsDto {
     private Furniture furniture;
     private UUID workerId;
     private UUID customerId;
-
-    @NonNull
-    private LocalDateTime orderTime;
-    private LocalDateTime sheduleExecutionTime;
 }

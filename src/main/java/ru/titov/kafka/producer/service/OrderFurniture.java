@@ -6,6 +6,6 @@ package ru.titov.kafka.producer.service;
  **/
 public interface OrderFurniture {
     default String getTopic() {
-        return "ORDER-FURNITURE";
+        return "order-furniture-last";
     }
 }

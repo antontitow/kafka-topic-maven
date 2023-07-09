@@ -9,4 +9,8 @@ public class JsonTransformException extends Exception {
     public JsonTransformException() {
         super("JsonTransformException");
     }
+
+    public JsonTransformException(String message) {
+        super(message);
+    }
 }

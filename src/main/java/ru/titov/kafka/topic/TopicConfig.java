@@ -24,7 +24,7 @@ public class TopicConfig {
     public NewTopic topic() {
 
         return TopicBuilder.name(topic)
-                .partitions(10)
+                .partitions(3)
                 .replicas(1)
                 .build();
     }

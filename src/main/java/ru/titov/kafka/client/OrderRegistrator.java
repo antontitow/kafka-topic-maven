@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import ru.titov.kafka.JsonAdapterUtil;
+import ru.titov.kafka.producer.model.dto.OrderRqDto;
 import ru.titov.kafka.producer.service.OrderFurniture;
 
 /**
@@ -15,9 +17,11 @@ import ru.titov.kafka.producer.service.OrderFurniture;
 @Slf4j
 public class OrderRegistrator implements OrderFurniture {
 
-    @KafkaListener(id = "myId", topics = "order-furniture")
+    @KafkaListener(id = "order-consumer-group-id", topics = "order-furniture-last")
     public void listen(String in) {
-        log.info(in);
+        log.info("order-furniture received data : ");
+        OrderRqDto orderRqDto = JsonAdapterUtil.toObject(in, OrderRqDto.class);
+        log.info("CustomerId: {}", orderRqDto.getCustomerId());
     }
 
 }
