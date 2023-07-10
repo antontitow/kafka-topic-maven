@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 import ru.titov.kafka.common.model.dto.WorkerRqDto;
 import ru.titov.kafka.producer.service.worker.WorkerFurniture;
@@ -16,15 +17,31 @@ import ru.titov.kafka.producer.service.worker.WorkerFurniture;
 @EnableKafka
 @Slf4j
 public class WorkerRegistrator implements WorkerFurniture {
-    @KafkaListener(id = "worker-consumer-group-id", topics = "worker-furniture", containerFactory = "workerKafkaListener")
-    public void listen(ConsumerRecord<WorkerRqDto, String> workerRqDto) {
+    @KafkaListener(id = "worker-consumer-group-id",
+            topics = "worker-furniture",
+            containerFactory = "workerKafkaListener",
+            groupId = "first-worker"
+    )
+    public void listen(ConsumerRecord<WorkerRqDto, String> workerRqDto, Acknowledgment acknowledgment) {
+        long offset = workerRqDto.offset();
+        log.info("offset", offset);
         log.info("worker-furniture received data : ");
 
         try {
             log.info("WorkerId: {}", workerRqDto.key().getWorkerId());
 
+            if (offset % 2 == 0) {
+                throw new RuntimeException();
+            }
+
+            acknowledgment.acknowledge();
+        } catch (RuntimeException runtimeException) {
+            throw new RuntimeException();
+
         } catch (Exception e) {
             log.info("throw error {}", e.getMessage());
         }
     }
+
+
 }

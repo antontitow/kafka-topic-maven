@@ -17,7 +17,7 @@ import ru.titov.kafka.producer.service.order.OrderFurniture;
 @Slf4j
 public class OrderRegistrator implements OrderFurniture {
 
-    @KafkaListener(id = "order-consumer-group-id", topics = "order-furniture-last")
+    @KafkaListener(id = "order-consumer-group-id", topics = "order-furniture-last", groupId = "first-worker" )
     public void listen(String in) {
         log.info("order-furniture received data : ");
 
