@@ -2,8 +2,11 @@ package ru.titov.kafka.client.worker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 import ru.titov.kafka.common.model.dto.WorkerRqDto;
@@ -43,5 +46,10 @@ public class WorkerRegistrator implements WorkerFurniture {
         }
     }
 
+    @DltHandler
+    public void processMessage(ConsumerRecord<WorkerRqDto, String> workerRqDto) {
+        log.info("processMessage");
+        log.info("workerRqDto", workerRqDto);
+    }
 
 }

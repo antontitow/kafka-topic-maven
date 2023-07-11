@@ -2,11 +2,14 @@ package ru.titov.kafka.producer.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.retrytopic.RetryTopicConfiguration;
+import org.springframework.kafka.retrytopic.RetryTopicConfigurationBuilder;
 import ru.titov.kafka.common.model.dto.WorkerRqDto;
 
 import java.util.HashMap;
@@ -39,4 +42,5 @@ public class WorkerConfiguration {
     public KafkaTemplate<WorkerRqDto, String> kafkaWorkerTemplate() {
         return new KafkaTemplate<WorkerRqDto, String>(producerFactory());
     }
+
 }

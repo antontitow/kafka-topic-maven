@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"furniture\": {\r\n        \"id\": \"0467c3ce-7d38-4722-8c48-b835e7cede87\",\r\n        \"color\": null,\r\n        \"sizes\": [\r\n            {\r\n                \"sizeType\": \"HEIGHT\",\r\n                \"value\": 1.0\r\n            },\r\n            {\r\n                \"sizeType\": \"WIDTH\",\r\n                \"value\": 1.0\r\n            }\r\n        ]\r\n    },\r\n    \"workerId\": \"d73eb4e6-4839-4c93-88fd-748a12feab50\",\r\n    \"customerId\": \"906d057e-0d6b-49c5-b85a-bb6ed97428dc\",\r\n    \"orderTime\": \"2023-07-09T01:13:00\",\r\n    \"sheduleExecutionTime\": \"2023-07-09T01:13:00\"\r\n}",
+					"raw": "{\r\n    \"furniture\": {\r\n        \"id\": \"0467c3ce-7d38-4722-8c48-b835e7cede87\",\r\n        \"color\": null,\r\n        \"sizes\": [\r\n            {\r\n                \"sizeType\": \"HEIGHT\",\r\n                \"value\": 1.0\r\n            },\r\n            {\r\n                \"sizeType\": \"WIDTH\",\r\n                \"value\": 1.0\r\n            }\r\n        ]\r\n    },\r\n    \"workerId\": \"d73eb4e6-4839-4c93-88fd-748a12feab50\",\r\n    \"customerId\": \"906d057e-0d6b-49c5-b85a-bb6ed97428dc\"    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -28,6 +28,35 @@
 					"path": [
 						"v1",
 						"order",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add worker",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workerId\": \"61420b20-8bec-4ec5-9577-f6a6eac13908\",\r\n    \"name\": \"Ivan\",\r\n    \"surname\": \"Sykhoy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/v1/worker/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"v1",
+						"worker",
 						"add"
 					]
 				}

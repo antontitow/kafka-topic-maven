@@ -7,6 +7,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.retrytopic.RetryTopicConfiguration;
+import org.springframework.kafka.retrytopic.RetryTopicConfigurationBuilder;
+import ru.titov.kafka.common.model.dto.WorkerRqDto;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
@@ -27,4 +31,15 @@ public class WorkerTopicConfig {
                 .replicas(1)
                 .build();
     }
+
+    @Bean
+    public NewTopic retryTopic() {
+
+        return TopicBuilder.name(topic + "-retry")
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+
+
 }
